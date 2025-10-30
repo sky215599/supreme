@@ -1,0 +1,89 @@
+from fpdf import FPDF
+
+pdf = FPDF()
+pdf.set_auto_page_break(auto=True, margin=15)
+pdf.add_font("NotoSans", "", "NotoSansJP-Regular.ttf", uni=True)
+pdf.add_font("NotoSans", "B", "NotoSansJP-Regular.ttf", uni=True)
+
+def section_title(title):
+    pdf.set_font("NotoSans", "B", 14)
+    pdf.set_text_color(0, 51, 102)
+    pdf.cell(0, 10, title, ln=True)
+    pdf.ln(4)
+
+def section_text(text):
+    pdf.set_font("NotoSans", "", 12)
+    pdf.set_text_color(0, 0, 0)
+    pdf.multi_cell(0, 8, text)
+    pdf.ln(4)
+
+# === 表紙 ===
+pdf.add_page()
+pdf.set_font("NotoSans", "B", 20)
+pdf.cell(0, 20, "履歴書・職務経歴書 / Resume", ln=True, align="C")
+pdf.ln(10)
+pdf.set_font("NotoSans", "", 14)
+pdf.cell(0, 10, "小玉 澄陽（Sumiyo Kodama）", ln=True, align="C")
+pdf.ln(20)
+
+# === 日本語部分 ===
+section_title("日本語レジュメ（履歴書・職務経歴書）")
+section_title("基本情報")
+section_text("氏名：小玉 澄陽（Kodama Sumiyo）\n生年月日：2003年6月19日\n電話番号：070-4268-1694\nメールアドレス：sky215599@gmail.com")
+
+section_title("学歴")
+section_text("神田外語学院　中国語専攻\n（2022年4月〜2024年3月）")
+
+section_title("職務経歴")
+section_text(
+    "Renxa株式会社（2025年8月〜2025年10月）\n"
+    "職種・役職：営業\n\n"
+    "主な業務内容：\n"
+    "・来訪者対応、電話応対、予約管理などの受付業務を担当。\n"
+    "・各種ドキュメント作成、データ入力、メール対応により業務効率化を推進。\n"
+    "・丁寧な接客により顧客満足度を向上。\n"
+    "・初期トラブルを迅速に解決し、来訪者の利便性を向上。\n"
+    "・柔軟な対応力を活かし、円滑な受付業務を実現。"
+)
+
+section_title("スキル・資格")
+section_text("・Microsoft Word / Excel / PowerPoint\n・情報処理技能検定準2級（表計算）")
+
+section_title("職務要約")
+section_text("受付・営業職として幅広い顧客対応を経験。丁寧で迅速な応対を通じて顧客満足度向上に貢献し、事務処理スキルと柔軟な対応力を培いました。")
+
+section_title("自己PR")
+section_text("コミュニケーションを大切にし、常に明るく丁寧な対応を心がけています。限られた時間の中でも的確に業務を遂行し、チーム全体の効率化に貢献できる点が強みです。")
+
+# === 英語部分 ===
+pdf.add_page()
+section_title("English Resume")
+section_title("Personal Information")
+section_text("Name: Sumiyo Kodama\nDate of Birth: June 19, 2003\nPhone: 070-4268-1694\nEmail: sky215599@gmail.com")
+
+section_title("Education")
+section_text("Kanda Institute of Foreign Languages — Major in Chinese\nApril 2022 – March 2024")
+
+section_title("Work Experience")
+section_text(
+    "Renxa Co., Ltd. — Sales\nAugust 2025 – October 2025\n\n"
+    "Main Responsibilities:\n"
+    "• Handled visitor reception, phone inquiries, and reservation management.\n"
+    "• Created business documents, managed data entry, and handled email correspondence.\n"
+    "• Maintained professional customer service and received positive feedback.\n"
+    "• Resolved on-site issues promptly to enhance visitor convenience.\n"
+    "• Adapted flexibly to changing daily tasks to ensure smooth front desk operations."
+)
+
+section_title("Skills & Qualifications")
+section_text("• Microsoft Word, Excel, PowerPoint\n• Information Processing Skills Certification (Level Pre-2) – Spreadsheet")
+
+section_title("Summary")
+section_text("Experienced in customer service and office administration. Demonstrates strong communication skills, attention to detail, and the ability to handle multiple tasks efficiently.")
+
+section_title("Personal Statement")
+section_text("I value effective communication and always strive to maintain a positive and professional attitude. I am skilled at multitasking and contributing to team productivity by responding flexibly to diverse needs in a dynamic environment.")
+
+# === 出力 ===
+pdf.output("Sumiyo_Kodama_Resume.pdf")
+print("✅ 日本語対応PDFを生成しました！")
